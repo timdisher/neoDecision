@@ -1,0 +1,7 @@
+^renv$
+^renv\.lock$
+^LICENSE\.md$
+^README\.Rmd$
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$

@@ -1,0 +1,23 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+**This Repository is a Work in Progress**
+
+This repository holds relevant code and slides for a presentation on the use of
+multivariate analyses to support open data, open code, and flexible tools for
+decision modeling. I use a package structure to code this but it is meant mostly
+to just to keep things organized and not to be installed as a package.
+
+Slides are hosted on github pages [here](https://timdisher.github.io/neoDecision/inst/slides/improving-neo-decisions)

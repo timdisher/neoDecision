@@ -1,0 +1,25 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Generate Pseudo Data
+
+In the final section of this presentation we will walk through a proposal that
+pretty much all trial data can and should be turned into portable pseudo data
+that is shared freely without restrictions. We will show two versions of this, 
+one using `{synthpop}` and the other using `{mvProbit}`. Note that this repository
+also includes the code necessary to do a bayesian version of the multivariate
+probit model but since we aren't going to make use of the additional benefits
+that go along with that we won't include it here since it is much slower to
+fit and gives equivalent means.
+
+## Generate data from synthpop
+
+We will use vanilla default settings for synthpop since the data here is simulated
+but in real applications there is a lot more fine tuning available.
+
+```{r}
+data("ex_dat")
+```
+

@@ -1,0 +1,244 @@
+---
+title: "Decision Making in Neonatology"
+subtitle: "What can we learn from health economics?"  
+author: 
+  - "Tim Disher"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "style.css"]
+    seal: false
+    self_contained: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+      beforeInit: "macros.js"
+
+      
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3, fig.showtext = TRUE,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  fig.show = TRUE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#002F6C",
+  title_slide_text_color = "#002F6C",
+  link_color = "#ED8B00",
+  text_bold_color = "#ED8B00"
+)
+```
+class: title-slide, bottom, left
+background-image: url(images/img-baby-in-nicu1.jpg)
+background-size: cover
+
+.pull-left[
+## Decision Making in Neonatology
+
+### Improving the Value of Clinical Trials
+Tim Disher, PhD, RN]
+
+---
+
+class: middle, center
+
+# About Me
+
+![:scale 20%](images/tim.png)
+
+### Tim Disher, PhD, RN
+#### Director - Evidence Synthesis and Data Analytics
+EVERSANA
+
+ <a href="http://twitter.com/halifaxtim">  
+`r fontawesome::fa("fab fa-twitter")` @halifaxtim</a> |  <a href="https://github.com/timdisher">`r fontawesome::fa("fab fa-github")` @timdisher</a>
+
+---
+
+# What is the thesis of this presentation?
+- Decisions are local
+  - Rates, preferences, methods comfort
+  - Trials are not flexible and totally open data is far away
+  - Can we approximate open data with simple models?
+  
+Upon completion of this activity, participants will be able to:
+
+1.	Describe the purpose of decision theoretic approaches
+2.	Give examples of ways in which neonatal studies could include components of decision theory
+3.	Identify potential roadblocks to generalization of the results of neonatal trials for decision making
+4.	Develop analysis plans that allow for flexible adaptations of results to new locations
+
+- Latest thought on overall flow is:
+  - I will teach you a simple way to get closer to decision theory (consenance curves)
+  - A simple decision theory approach to prognostic models (decision curves)
+  - A simple decision theory approach to RCTs (MCDA)
+  - A package to make this portable
+
+---
+class: middle, center
+
+## What I Hope to Convince you of
+
+> Every neonatal trial that is designed to influence practice decisions should
+provide raw data, user-friendly code, and simple decision tools based on
+multivariate outcomes
+
+**I will offer whatever support I can to help anyone working towards these goals** 
+
+---
+## What I Love about Neonatal Research
+
+.pull-left[
+### Robust and Collaborative
+- Commitment to randomized controlled trials
+- Thinking with an eye to meta-analyses
+- Neonatal networks  
+- Multidiscplinary
+
+### Family Integrated
+- Care paradigms centered around families (eg, fiCARE)
+- Increased call for family preferences in guidelines
+]
+
+.pull-right[
+![](https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Cochrane_logo_stacked.svg/1200px-Cochrane_logo_stacked.svg.png)]
+
+---
+## What I Would Like to See More of
+
+### Open Data
+
+- Research will be more flexible and more portable if it's more open
+  - Most common example is prediction tools
+- What is preventing us from sharing the data itself?
+  - Privacy rules (may not be the barrier we think it is)
+  - Ownership/competition
+
+### Decision Theory
+
+- A set of methods/approach to analysis and interpretation of data that maximizes
+"goodness"
+  - Health economics, MCDA, win-ratio, and others
+- We are already using pseudo decision theory by basing decisions off of statistical significance
+  - $\alpha$ = 0.05 and $\beta$ = 0.8 suggests false positives four times worse than false negatives
+  - Can we do better?
+
+---
+## Barriers to Use of Decision Theory in Neonatal Research
+
+### Preferences are Personal
+
+- All the methods we might be interested in require us to weight outcomes in
+some way
+  - Win-ratio and ordinal models: Ordinal ranking
+  - MCDA: Ordinal or swing weighting
+  - Cost-effectiveness/utility: Willingness to pay and valuing health states
+  - Decision curves: Thresholds for treatment
+
+### Plurality of Methods
+  - Lack of shared experience means lack of confidence in planning outcomes/analyses
+    - What will be convincing? What will generalize best?
+
+### Misperceptions
+ - I can't include a decision theory framework because I don't agree with the principals
+ of method x
+ 
+---
+class: inverse, middle, center
+
+# Simulated Data | Shared Code | Simple Tools
+
+---
+
+# Simulated Data
+
+> Your trial can't and doesn't have to provide a universal recommendation that
+is valid under all preferences in all centers
+
+- Implementing decision theoretic methods does not have to require we re-think
+our entire approach to trials
+  - You may not be able to capture costing data
+  - You may not have resources for the most rigorous preference elicitation
+  
+.center.large[**We can take a small step towards incorporating decision theory in any 
+trial and then lay the groundwork for others to adapt**]
+
+- Synthetic data using machine learning based tools like the `synthpop` package
+  - Risk of re-identification may be too high for public sharing
+
+- Standard, well-researched analysis methods
+  - Multivariate probit for binomial outcomes. Can be used for the primary analysis (and opens new doors as well)
+
+---
+
+# Shared Code
+
+- Open-source revolution has been a boon for analysis methods, computer science,
+and science communication.
+
+- Tools for open code are easy to use and often within the toolbox of methodological
+colleagues
+
+- We can provide a tremendous benefit to trainees by showing them the process of
+high-quality analysis
+ - Many errors can be avoided and problems anticipated by seeing an example
+ of analyses run on a similar dataset
+ - When combined with simulated data, provides a powerful tool to help standardization
+ of approach
+  
+  <br>
+>Sharing your code can be scary but don't underestimate the upsides: You
+can teach and learn just by engaging in the process. It also unlocks something
+amazing: people will help you to improve your work.
+
+---
+# Simple Tools
+
+In knowledge translation we often talk about the two "valleys of death" where
+basic science discoveries fail to move into clinical research and clinical research
+discoveries are delayed in entering practice.
+
+- We can think of a third valley being that once we convince a clinician an intervention
+can be helpful they then have to communicate this to patients
+
+### Analyses based on decision theory methods need simple tools to help apply them
+
+These can be as simple as Excel calculators (used with success for risk prediction tools)
+or as complex as interactive web-apps but the whole purpose of decision tools is
+to aid decision makers who might have preferences that are very different from yours
+so you need to provide them the support to explore the implications of those preferences
+
+---
+class: inverse, middle, center
+
+# A Simulated Example
+
+---
+# Methods
+- Simulate a simple RCT of a treatment
+- Three outcomes total: Mortality, BPD, NEC
+- Treatment decreases risk of BPD but increases risk of NEC/Death
+---
+# Evaluation
+MCDA three ways
+ - Additive high/low risk
+ - Remove deaths from NEC probability high/low risk
+ - P(meaningful BPD & non meaningful death or harm)
+---
+# Next Steps 
+- {neoDecision}

@@ -1,0 +1,44 @@
+h1,h2,h3,h4,h5,h6{
+  color: #002F6C;
+}
+
+
+li.tocify-item.list-group-item.active{
+  background-color: #002F6C;
+}
+
+
+li.tocify-item.list-group-item.active:hover{
+  background-color: #002F6C;
+}
+
+li.tocify-item.list-group-item:hover{
+  background-color: #7FA9AE
+;
+}
+
+.title{
+  margin-top: 80px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+
+.watermark {
+  opacity: 0.2;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  font-size: 500%;
+  color: #00407d;
+}
+

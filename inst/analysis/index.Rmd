@@ -1,0 +1,77 @@
+--- 
+title: Data preparation for Harvard Talk
+author: "Analyst"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    self_contained: false # true when sharing, false otherwise
+    split_by: chapter # non when sharing, chapter otherwise
+    includes:
+      in_header: code-fold.html # inspired by: https://stackoverflow.com/questions/45360998/code-folding-in-bookdown
+bibliography: project-lib.bib
+biblio-style: apalike
+link-citations: yes
+---
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, 
+                      warning=FALSE, 
+                      message=FALSE, 
+                      dev = "svg")
+
+library(xfun) # caching
+
+# Clean and Validate
+library(tidyverse) # Lots of data munging tools
+library(data.validator) # Data validation https://github.com/Appsilon/data.validator
+library(assertr) # Data validation
+
+
+
+# Data vis
+library(patchwork) # Easy to arrange multiple plots
+library(summarytools) # Some nice summaries
+library(ggeffects)
+library(estools) # Generic EVERSANA helpers eg palettes
+library(xaringanthemer)
+
+
+# General
+library(gtsummary) # Use development version https://github.com/ddsjoberg/gtsummary
+
+library(sjlabelled)
+library(glue) # easy pasting
+
+# Analysis packages
+library(gt)
+library(rstan)
+library(mvProbit)
+library(smaa)
+library(hitandrun)
+
+
+
+devtools::load_all() # Assumes you're using package structure
+
+
+
+# Say where you want your cache to be
+cache <- here::here("inst","cache/")
+
+```
+
+
+# Project Information
+
+Generation of materials for Harvard neo talk. This analysis was developed using a package structure, with
+the analysis organized as a series of functions. If you are just joining this
+project please start here to understand the over-arching goal of the analysis.
+The functions are built to work as a stand-alone workflow, and can be run in the
+correct order by calling the `bookdown::serve_book()` function with the
+index.Rmd file open. This project makes use of caching for long-running analyses
+but the cache is not tracked on git. The first run can be expected to take a
+reasonably long amount of time after which subsequent renders are usually < 1 minute.
+
+
