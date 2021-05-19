@@ -1,14 +1,12 @@
 --- 
 title: Data preparation for Harvard Talk
-author: "Analyst"
+author: "Tim Disher"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
     self_contained: false # true when sharing, false otherwise
     split_by: chapter # non when sharing, chapter otherwise
-    includes:
-      in_header: code-fold.html # inspired by: https://stackoverflow.com/questions/45360998/code-folding-in-bookdown
 bibliography: project-lib.bib
 biblio-style: apalike
 link-citations: yes
@@ -24,29 +22,24 @@ knitr::opts_chunk$set(echo=TRUE,
 library(xfun) # caching
 
 # Clean and Validate
-library(tidyverse) # Lots of data munging tools
-library(data.validator) # Data validation https://github.com/Appsilon/data.validator
-library(assertr) # Data validation
-
-
+library(dplyr) # Lots of data munging tools
+library(ggplot2) # Lots of data munging tools
+library(purrr)
 
 # Data vis
 library(patchwork) # Easy to arrange multiple plots
 library(summarytools) # Some nice summaries
 library(ggeffects)
-library(estools) # Generic EVERSANA helpers eg palettes
 library(xaringanthemer)
-
+cols <- c("#002F6C", "#ED8B00", "#DC4405", "#007398", "#7FA9AE", "#B1B3B3", 
+"#565a5c")
 
 # General
-library(gtsummary) # Use development version https://github.com/ddsjoberg/gtsummary
-
-library(sjlabelled)
 library(glue) # easy pasting
 
 # Analysis packages
 library(gt)
-library(rstan)
+library(synthpop)
 library(mvProbit)
 library(smaa)
 library(hitandrun)
@@ -60,6 +53,7 @@ devtools::load_all() # Assumes you're using package structure
 # Say where you want your cache to be
 cache <- here::here("inst","cache/")
 
+data("ex_dat")
 ```
 
 

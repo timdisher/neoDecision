@@ -4,7 +4,8 @@
     <title>Decision Making in Neonatology</title>
     <meta charset="utf-8" />
     <meta name="author" content="Tim Disher" />
-    <meta name="date" content="2021-04-02" />
+    <meta name="date" content="2021-05-19" />
+    <link href="improving-neo-decisions_files/remark-css/ninjutsu.css" rel="stylesheet" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
@@ -22,7 +23,7 @@ background-size: cover
 .pull-left[
 ## Decision Making in Neonatology
 
-### What Can we Learn from Health Economics?
+### What can we learn from Health Economics?
 Tim Disher, PhD, RN]
 
 ---
@@ -38,19 +39,75 @@ class: middle, center
 EVERSANA
 
  &lt;a href="http://twitter.com/halifaxtim"&gt;  
-<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @halifaxtim&lt;/a&gt; |  &lt;a href="https://github.com/timdisher"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-right:0.2em;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @timdisher&lt;/a&gt;
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @halifaxtim&lt;/a&gt; |  &lt;a href="https://github.com/timdisher"&gt;<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @timdisher&lt;/a&gt;
 
 ---
-class: middle, center
+# About EVERSANA
+.large[
+- Primarily consult for pharmaceutical and medical device companies
+ - Some ad-hoc work with academia/health technology assessment agencies
+- Health Economics and Outcomes Research (HEOR) group responsible for
+ - Development of global health economic models
+ - Adaptation of models for local decision makers
+ - Trial/Claims/EHR analysis to support reimbursement]
+ 
+---
+layout: true
+class: split-four
 
-## What I Hope to Convince you of
+.row.bg1[.content.center[
+#.white[Decisions are Local]
+####.white[Background event rates, practices, and availability of resources]
+]]
 
-&gt; Every neonatal trial that is designed to influence practice decisions should
-provide raw data, user-friendly code, and simple decision tools based on
-multivariate outcomes
+.row.bg2[.content.center[
+#.white[Decisions are Personal]
+####.white[Within a location the right decision depends on patient preferences]
+]]
 
-**I will offer whatever support I can to help anyone working towards these goals** 
+.row.bg3[.content.center[
+#.white[Decision-making benefits from bespoke methods]
+####.white[Many to choose from - MCDA and Ordinal models today]
+]]
 
+.row.bg4[.content.center[
+#.white[Decision-making benefits from open data]
+####.white[But truly open data is far away so we need a temporary solution]
+]]
+
+---
+class: fade-row2 fade-row3 fade-row4
+---
+class: fade-row1 fade-row3 fade-row4
+---
+class: fade-row1 fade-row2 fade-row4
+---
+class: fade-row1 fade-row2 fade-row3
+---
+layout: false
+
+# Objectives 
+.large[.center[### Upon completion of this activity, participants will be able to]
+
+1.	Describe the purpose of decision theoretic approaches
+2.	Give examples of ways in which neonatal studies could include components of decision theory
+3.	Identify potential roadblocks to generalization of the results of neonatal trials for decision making
+4.	Develop analysis plans that allow for flexible adaptations of results to new locations
+]
+
+---
+# Presentation Flow
+
+### Approaches you can use based on published data
+  - Neyman-Pearson hypothesis testing as a decision theoretic approach (you can change `\(\alpha\)` and `\(\beta\)`)
+  - Using MCDA to make decisions based on commonly reported summaries
+
+### Approaches that need individual participant data (real or **synthethic**)
+  - A simple decision theory approach to RCTs (Ordinal models)
+  - A package to make this portable
+
+---
+&lt;iframe src="https://wall.sli.do/event/eqmqpzmh?section=927ba679-43c6-40b2-9024-282a10569e8d" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"&gt;&lt;/iframe&gt;
 ---
 ## What I Love about Neonatal Research
 
@@ -69,130 +126,638 @@ multivariate outcomes
 .pull-right[
 ![](https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Cochrane_logo_stacked.svg/1200px-Cochrane_logo_stacked.svg.png)]
 
+.footnote[Mitra, Dorling, and Johnston (2021)]
 ---
 ## What I Would Like to See More of
 
-### Open Data
+.pull-left[### Open Data
 
 - Research will be more flexible and more portable if it's more open
   - Most common example is prediction tools
 - What is preventing us from sharing the data itself?
   - Privacy rules (may not be the barrier we think it is)
   - Ownership/competition
-
-### Decision Theory
+]
+.pull-right[### Decision Theory
 
 - A set of methods/approach to analysis and interpretation of data that maximizes
 "goodness"
   - Health economics, MCDA, win-ratio, and others
 - We are already using pseudo decision theory by basing decisions off of statistical significance
-  - `\(\alpha\)` = 0.05 and `\(\beta\)` = 0.8 suggests false positives four times worse than false negatives
   - Can we do better?
-
+]
+.footnote[Drummond, Sculpher, Claxton, et al. (2015); Lakens, Adolfi, Albers, et al. (2018)]
 ---
-## Barriers to Use of Decision Theory in Neonatal Research
 
+## We Usually Can't Rely on Guidelines to Make Decisions for Us
+
+.pull-left[ 
+ ### Local Variability
+- Variation in patient populations
+- Variation in practices
+- Variation in patient outcomes
+
+]
+
+.pull-right[
 ### Preferences are Personal
-
 - All the methods we might be interested in require us to weight outcomes in
 some way
   - Win-ratio and ordinal models: Ordinal ranking
   - MCDA: Ordinal or swing weighting
   - Cost-effectiveness/utility: Willingness to pay and valuing health states
   - Decision curves: Thresholds for treatment
+ ]
+---
+class: inverse, middle, center
 
-### Plurality of Methods
-  - Lack of shared experience means lack of confidence in planning outcomes/analyses
-    - What will be convincing? What will generalize best?
+# Simple Tools | Synthetic Data | Standard Code
 
-### Misperceptions
- - I can't include a decision theory framework because I don't agree with the principals
- of method x
+---
+# Example Data
+
+- The following sections of this presentation will use some fake data to walk through
+potential approaches.
+
+- Results were simulated for a hypothetical two-arm parallel randomized controlled
+trial of very pre-term infants (N = 1350).
+
+- Outcomes include:
+  1. Mortality
+  2. Sepsis (any)
+  3. Severe IVH 
+  4. NEC
+  5. Bronchopulmonary Dysplasia
+
+- Baseline rates were simulated using available Canadian event rates where possible
+with a treatment that improves mortality, severe IVH, and sepsis but increases the
+risk of bronchopulmonary dysplasia and NEC.
+
+---
+# Example Data | Results
+
+
+
+
+
+&lt;img src="improving-neo-decisions_files/figure-html/unnamed-chunk-2-1.svg" width="100%" /&gt;
+
+---
+# Simple Tools | Can we change `\(\alpha\)` and `\(\beta\)`?
+
+- Trials designed under a Neyman-Pearson decision framework provide a framework
+for action based on the results of a significance test. Most commonly we are testing
+that a treatment effect is different than zero. We design the trial to:
+ - Have 1 - `\(\beta\)` (power) probability of detecting an effect
+ - No more than `\(\alpha\)` of claiming an effect exists when the true difference is zero.
  
+- These are typically set at `\(\beta\)` = 0.8 and `\(\alpha\)` = 0.05 which suggests that
+is it 4 times worse to claim an effect exists when it doesn't.
+
+&gt;This .80 desired power convention is offered with the hope that it will be ignored whenever an investigator can find a basis in his substantive concerns in his specific research investigation to choose a value ad hoc  
+ - Cohen (1998)
+
+
 ---
-class: inverse, middle, center
+# Simple Tools | Changing `\(\alpha\)` and `\(\beta\)`
 
-# Simulated Data | Shared Code | Simple Tools
+- Imagine that our simulated trial was powered to find a decrease in sepsis. Maybe
+locally we are also concerned that the mechanism of action of the treatment is such
+that we're concerned about an increase in BPD.
+  - At our center we have very good outcomes for neonates with sepsis but have
+  found BPD is associated with poor developmental outcomes 
+
+- We decide that we won't evaluate a treatment further if there is treatment
+increases BPD by more than 8.5%. Based on an expected baseline event rate of 36% in
+this population this would equate to an odds ratio of 1.43.
+
+- Instead of a 4:1 ratio of the importance of false negative/positives we are
+willing to risk 2:1. Since we can't change the n we can just find the threshold
+for `\(\alpha\)` where the ratio is 2:1.
+  - This is 0.08 which when compared to trial analysis p-value of 0.059 would lead us to "act as if"
+  there were harm and not implement the intervention.
+
+
+
+---
+# Simple Tools | MCDA Overview
+
+- Trials typically provide us with estimates of effects on multiple outcomes that
+are relevant for decision making.
+
+- The benefit portion of a decision theoretic model should bring all relevant
+outcomes onto a weighted scale that helps us to decide whether one treatment
+is better than the other over all
+  - In health economic models this is often health utilities
+
+- If preferences are linear and additive
+  - Weights can be explicitly elicited, ranked ordinaly, or we can use random
+  samples from all feasible weights.
+  - Calculate the probability that a treatment is "best" given estimates of event
+  rates and their uncertainty alongside weights (with or without uncertainty)
+  - Can also calculate the vector of weights needed to prefer one treatment over
+  another. This can be a nice tool to logic check your implied preferences.
+
+.footnote[Tervonen, Naci, van
+Valkenhoef, et al. (2015)]
 
 ---
 
-# Simulated Data
+# Simple Tools | MCDA applied
 
-&gt; Your trial can't and doesn't have to provide a universal recommendation that
-is valid under all preferences in all centers
+When using a "preference free" model treatment has the highest first rank acceptability.
+Central weights show that choosing treatment suggests lower weight placed on
+BPD and NEC. Also shows that we can confidently choose BPD but requires us to care
+more about BPD than any other outcome
+ - Consider how decisions would change as baseline events change
 
-- Implementing decision theoretic methods does not have to require we re-think
-our entire approach to trials
-  - You may not be able to capture costing data
-  - You may not have resources for the most rigorous preference elicitation
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#updbsxkrhn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#updbsxkrhn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#updbsxkrhn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#updbsxkrhn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#updbsxkrhn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#updbsxkrhn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#updbsxkrhn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#updbsxkrhn .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#updbsxkrhn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#updbsxkrhn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#updbsxkrhn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#updbsxkrhn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#updbsxkrhn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#updbsxkrhn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#updbsxkrhn .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#updbsxkrhn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#updbsxkrhn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#updbsxkrhn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#updbsxkrhn .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#updbsxkrhn .gt_left {
+  text-align: left;
+}
+
+#updbsxkrhn .gt_center {
+  text-align: center;
+}
+
+#updbsxkrhn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#updbsxkrhn .gt_font_normal {
+  font-weight: normal;
+}
+
+#updbsxkrhn .gt_font_bold {
+  font-weight: bold;
+}
+
+#updbsxkrhn .gt_font_italic {
+  font-style: italic;
+}
+
+#updbsxkrhn .gt_super {
+  font-size: 65%;
+}
+
+#updbsxkrhn .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="updbsxkrhn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <th colspan="8" class="gt_heading gt_title gt_font_normal" style>MCDA Summaries</th>
+    </tr>
+    <tr>
+      <th colspan="8" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style></th>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_center gt_columns_bottom_border" rowspan="2" colspan="1">Arm</th>
+      <th class="gt_col_heading gt_center gt_columns_bottom_border" rowspan="2" colspan="1">First Rank Acceptability</th>
+      <th class="gt_col_heading gt_center gt_columns_bottom_border" rowspan="2" colspan="1">Confidence Factor</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="5">
+        <span class="gt_column_spanner">Central Weights</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Mortality</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Severe IVH</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Sepsis</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">BPD</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">NEC</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr>
+      <td class="gt_row gt_left">Control</td>
+      <td class="gt_row gt_right">0.24</td>
+      <td class="gt_row gt_right">0.75</td>
+      <td class="gt_row gt_right">0.16</td>
+      <td class="gt_row gt_right">0.17</td>
+      <td class="gt_row gt_right">0.07</td>
+      <td class="gt_row gt_right">0.33</td>
+      <td class="gt_row gt_right">0.27</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left">Treatment</td>
+      <td class="gt_row gt_right">0.76</td>
+      <td class="gt_row gt_right">1.00</td>
+      <td class="gt_row gt_right">0.21</td>
+      <td class="gt_row gt_right">0.21</td>
+      <td class="gt_row gt_right">0.24</td>
+      <td class="gt_row gt_right">0.16</td>
+      <td class="gt_row gt_right">0.18</td>
+    </tr>
+  </tbody>
   
-.center.large[**We can take a small step towards incorporating decision theory in any 
-trial and then lay the groundwork for others to adapt**]
-
-- Synthetic data using machine learning based tools like the `synthpop` package
-  - Risk of re-identification may be too high for public sharing
-
-- Standard, well-researched analysis methods
-  - Multivariate probit for binomial outcomes. Can be used for the primary analysis (and opens new doors as well)
-
----
-
-# Shared Code
-
-- Open-source revolution has been a boon for analysis methods, computer science,
-and science communication.
-
-- Tools for open code are easy to use and often within the toolbox of methodological
-colleagues
-
-- We can provide a tremendous benefit to trainees by showing them the process of
-high-quality analysis
- - Many errors can be avoided and problems anticipated by seeing an example
- of analyses run on a similar dataset
- - When combined with simulated data, provides a powerful tool to help standardization
- of approach
   
-  &lt;br&gt;
-&gt;Sharing your code can be scary but don't underestimate the upsides: You
-can teach and learn just by engaging in the process
+</table></div>
+
 
 ---
-# Simple Tools
 
-In knowledge translation we often talk about the two "valleys of death" where
-basic science discoveries fail to move into clinical research and clinical research
-discoveries are delayed in entering practice.
+# Synthetic Data
 
-- We can think of a third valley being that once we convince a clinician an intervention
-can be helpful they then have to communicate this to patients
+- If our decisions need to be based on combinations of events or our preferences
+are not linearly additive then we need actual individual participant data
+  - We usually will not have access or access could take months and/or be 
+  prohibitively expensive
 
-### Analyses based on decision theory methods need simple tools to help apply them
+- Solution: Synthetic data
 
-These can be as simple as Excel calculators (used with success for risk prediction tools)
-or as complex as interactive web-apps but the whole purpose of decision tools is
-to aid decision makers who might have preferences that are very different from yours
-so you need to provide them the support to explore the implications of those preferences
+- Synthetic data that will generate approximately the same results can be generated from the original
+  - Re-identification risk? See [this report](http://hummedia.manchester.ac.uk/institutes/cmist/archive-publications/reports/2015-02%20-Report%20on%20disclosure%20risk%20analysis%20of%20synthpop%20synthetic%20versions%20of%20LCF_%20final.pdf)
+  - Alternative: Use the same software but only share the actual models. Simulate
+  new datasets using local patient characteristics
+
+.footnote[Nowok, Raab, Dibben, et al. (2016)]
+---
+# Synthetic Data | Applied Example
+
+Using our example data we create a new synthetic dataset based on fitting binomial
+models first to mortality given treatemnt then IVH given mortality and treatment, etc..
+
+&lt;img src="improving-neo-decisions_files/figure-html/unnamed-chunk-5-1.svg" width="100%" /&gt;
 
 ---
-class: inverse, middle, center
+# Synthetic Data | Ordinal Analysis
 
-# A Simulated Example
+- If we order our outcomes from best (uncomplicated discharge) to worst (death)
+we can create an ordinal outcome that acts as a quasi utility based on worst
+outcome.
+  - No events &gt; Sepsis &gt; NEC &gt; CLD &gt; IVH &gt; Death
+  - For simplicity we just compare to a single synthetic dataset. In real applications
+  you may simulate multiple datasets and take estimates averaged over them all.
+  
+&lt;img src="improving-neo-decisions_files/figure-html/unnamed-chunk-6-1.svg" width="100%" /&gt;
+
+
 
 ---
-# Methods
 
-- Simulate a simple RCT of a treatment 
----
-# Evaluation
+# Standard Code | Next Steps
+
+- {neoDecision} is an in development R package to provide a simple interface to methods described
+today (and more later). It is a wrapper for multiple existing packages.
+- Goals (more or less in order)
+  - Simple interface to relevant formulations of MCDAs (via {smaa} and {hitandrun})
+  - Creation of synthetic data (via {synthpop}) with the option to share actual
+  datasets or models used to create them
+  - API to an open database of neonatal data (true IPD, synthetic data, models for synthetic data, results from a set of standard models)
+  - Point and click interfaces to create data, add to database, and create relevant models
 
 ---
-# Next Steps
+# Summary
+
+- Decisions are local and personal and the same data can (and should!) lead to 
+different decisions in different environments
+
+- We made several different decisions from our simulated trial
+  - Original analysis suggests effective for sepsis
+  - Changing value of false positives/false negatives leads to rejection based on increase in BPD
+  - MCDA suggests treatment is effective across all outcomes unless you value BPD
+  much higher than mortality
+  - Ordinal analysis point estimate suggests treatment may decrease utility (increases
+  scores)
+
+- We can start using basic methods today with an eye to making more flexible methods
+available through synthetic data
+---
+&lt;iframe src="https://wall.sli.do/event/eqmqpzmh?section=927ba679-43c6-40b2-9024-282a10569e8d" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"&gt;&lt;/iframe&gt;
+---
+class: inverse, center, middle
+# Questions?
+
+---
+# References
+[1] M. F. Drummond, M. J. Sculpher, K. Claxton, et al. _Methods for the economic evaluation of health care
+programmes_. Oxford university press, 2015.
+
+[2] D. Lakens, F. G. Adolfi, C. J. Albers, et al. "Justify your alpha". In: _Nature Human Behaviour_ 2.3
+(2018), pp. 168-171.
+
+[3] S. Mitra, J. Dorling, and B. C. Johnston. "Optimizing practice guidelines through incorporating
+patient and family values and preferences". In: _Seminars in Fetal and Neonatal Medicine_. Elsevier. 2021,
+p. 101194.
+
+[4] B. Nowok, G. M. Raab, C. Dibben, et al. "synthpop: Bespoke creation of synthetic data in R". In:
+_Journal of statistical software_ 74.11 (2016), pp. 1-26.
+
+[5] T. Tervonen, H. Naci, G. van Valkenhoef, et al. "Applying multiple criteria decision analysis to
+comparative benefit-risk assessment: choosing among statins in primary prevention". In: _Medical Decision
+Making_ 35.7 (2015), pp. 859-871.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="macros.js"></script>
 <script>var slideshow = remark.create({
-"slideNumberFormat": "%current%",
+"slideNumberFormat": "%current%/%total%",
 "highlightStyle": "github",
 "highlightLines": true,
 "ratio": "16:9",

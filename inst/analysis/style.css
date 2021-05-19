@@ -42,3 +42,6 @@ img {
   color: #00407d;
 }
 
+.large { font-size: 160%; }
+
+.small { font-size: 50%; }

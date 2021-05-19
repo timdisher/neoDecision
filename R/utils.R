@@ -35,3 +35,20 @@ gam_par <- function(mu, sd){
   list(shape = a, rate = rate)
   
 }
+
+
+make_ord <- function(data,name = "ord", 
+                     order = NA){
+  
+  out <- data %>% 
+    mutate(!!name := case_when(data[[order[[1]]]] == 1 ~ order[[1]],
+                               data[[order[[2]]]] == 1 ~ order[[2]],
+                               data[[order[[3]]]] == 1 ~ order[[3]],
+                               data[[order[[4]]]] == 1 ~ order[[4]],
+                               data[[order[[5]]]] == 1 ~ order[[5]],
+                               TRUE ~ "no_event"
+    ),
+    !!name := factor(!! rlang::sym(name), levels = c("no_event", order)))
+  
+  return(out)
+}

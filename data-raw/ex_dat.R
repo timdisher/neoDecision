@@ -61,15 +61,15 @@ n_trial <- 1350
 # about the same
 
 tes <- c(
-  mort = log(0.7),
-  ivh_any = log(0.7),
-  sev_ivh = log(0.8),
+  mort = log(0.9),
+  ivh_any = log(0.8),
+  sev_ivh = log(0.9),
   sepsis = log(0.6),
-  cld = log(0.8),
+  cld = log(1.2),
   steroids = 0,
   pulm_hem = 0,
   pvl = 0,
-  nec = log(0.8),
+  nec = log(1.4),
   sip = log(0.6),
   gibleed7days = 0,
   rop3 = 0,
@@ -88,9 +88,11 @@ ex_dat <- sim_mv(cor_mat,
                    cont_mus, 
                    cont_sds, 
                    tes = tes, 
-                   n_trial)
+                   n_trial) %>% as.data.frame()
 
 cor(ex_dat, method = "spearman")
 
+glm(cld ~ trt, family = binomial, data = ex_dat) %>% summary
+glm(mort ~ trt, family = binomial, data = ex_dat) %>% summary
 usethis::use_data(ex_dat, overwrite = TRUE)
 

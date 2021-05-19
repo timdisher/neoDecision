@@ -1,0 +1,10 @@
+project-information
+generate-pseudo-data
+generate-data-from-synthpop
+all-analyses
+things-we-can-do-without-access-to-ipd
+adjusting-p-value-for-decision-at-hand
+mcda-from-marginals
+approaches-that-we-need-ipd-for
+ordinal-model
+mcda-with-conditional

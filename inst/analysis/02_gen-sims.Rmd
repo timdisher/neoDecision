@@ -7,19 +7,69 @@ editor_options:
 
 In the final section of this presentation we will walk through a proposal that
 pretty much all trial data can and should be turned into portable pseudo data
-that is shared freely without restrictions. We will show two versions of this, 
-one using `{synthpop}` and the other using `{mvProbit}`. Note that this repository
-also includes the code necessary to do a bayesian version of the multivariate
-probit model but since we aren't going to make use of the additional benefits
-that go along with that we won't include it here since it is much slower to
-fit and gives equivalent means.
+that is shared freely without restrictions. We has originally planned to show
+two versions of this: one using `{synthpop}` and the other using `{mvProbit}`.
+After reviewing the synthpop documentation more closely however it looks like
+you can actually just save the model objects which means you can interact with
+them using local data. This is much faster/more general than the multivariate
+probit approach so we won't move that work forward any further. Note that this
+repository also includes the code necessary to do a bayesian version of the
+multivariate probit model which is primarily of interest if you'd like to do
+something like specify treatment effects across binomial outcomes as
+shared/exchangeable.
 
 ## Generate data from synthpop
 
 We will use vanilla default settings for synthpop since the data here is simulated
-but in real applications there is a lot more fine tuning available.
+but in real applications there is a lot more fine tuning available. We can get
+a nice simple default output compare synthetic to original data using the `compare`
+function.
 
 ```{r}
 data("ex_dat")
+
+dat <- as.data.frame(ex_dat) %>% dplyr::select(trt, mort, sev_ivh, sepsis, cld, nec)
+
+set.seed(124)
+synth_dat <- xfun::cache_rds({
+  syn(dat, minnumlevels = 5, m = 10, models = FALSE, method = "parametric")
+}, dir = cache,  file = "synth_dat.rds")  
+
+compare(synth_dat, data = dat)
 ```
+
+We can also take a quick look at correlations for a pooled version of
+the synthetic datasets vs the observed data.
+
+```{r}
+synth_dat$syn %>%
+  do.call(rbind, .) %>% 
+  mutate_all(as.numeric) %>% select(-trt) %>% cor()
+```
+
+```{r}
+dat[,-1] %>% cor()
+```
+
+For the rest of the presentation we will just use on example dataset. For the
+comparison at the end we will create a composite with sev_ivh + cld
+
+```{r}
+pres_dat_syn <- synth_dat$syn[[10]] %>% 
+  mutate_all(~ as.numeric(as.character(.))) %>% 
+  mutate(cld_ivh = ifelse(sev_ivh == 1 & cld  == 1, 1, 0),
+         cld_no_ivh = ifelse(cld == 1 & sev_ivh == 0, 1, 0),
+         ivh_no_cld = ifelse(cld == 0 & sev_ivh == 1, 1, 0))
+
+pres_dat <- dat %>%
+  mutate(cld_ivh = ifelse(sev_ivh == 1 & cld  == 1, 1, 0),
+         cld_no_ivh = ifelse(cld == 1 & sev_ivh == 0, 1, 0),
+         ivh_no_cld = ifelse(cld == 0 & sev_ivh == 1, 1, 0))
+
+colMeans(pres_dat)
+colMeans(pres_dat_syn)
+```
+
+Overall just taking even a single dataset we've done pretty good at replicating
+the original data.
 

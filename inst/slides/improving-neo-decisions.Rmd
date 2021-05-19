@@ -6,18 +6,19 @@ author:
 date: '`r Sys.Date()`'
 output:
   xaringan::moon_reader:
-    css: ["xaringan-themer.css", "style.css"]
+    css: ["xaringan-themer.css", "style.css", "ninjutsu"]
     seal: false
     self_contained: false
     nature:
-      slideNumberFormat: "%current%"
+      slideNumberFormat: "%current%/%total%"
       highlightStyle: github
       highlightLines: true
       ratio: 16:9
       countIncrementalSlides: true
       beforeInit: "macros.js"
-
       
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -25,6 +26,7 @@ options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(
   fig.width=9, fig.height=3.5, fig.retina=3, fig.showtext = TRUE,
   out.width = "100%",
+  dev = "svg",
   cache = FALSE,
   echo = TRUE,
   message = FALSE, 
@@ -32,16 +34,35 @@ knitr::opts_chunk$set(
   fig.show = TRUE,
   hiline = TRUE
 )
+
+library(RefManageR)
+
+bib <- ReadBib(here::here("inst","analysis","project-lib.bib"), check = FALSE)
 ```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 library(xaringanthemer)
+library(tidyverse)
+library(gt)
+devtools::load_all()
+data("ex_dat")
+cache <- here::here("inst", "cache")
+dat <- sapply(list.files(cache), function(x) readRDS(here::here(cache, x)))
+
+names(dat) <- str_remove(names(dat),"_[:alnum:]+.rds")
+
+cols <- c("#002F6C", "#ED8B00", "#DC4405", "#007398", "#7FA9AE", "#B1B3B3", 
+"#565a5c")
+
 style_mono_light(
-  base_color = "#002F6C",
-  title_slide_text_color = "#002F6C",
-  link_color = "#ED8B00",
-  text_bold_color = "#ED8B00"
+  base_color = cols[[1]],
+  title_slide_text_color = cols[[1]],
+  link_color = cols[[2]],
+  text_bold_color = cols[[2]]
 )
+
+slide_theme <- theme_xaringan(text_font_size = 14, title_font_size = 14)
+
 ```
 class: title-slide, bottom, left
 background-image: url(images/img-baby-in-nicu1.jpg)
@@ -50,7 +71,7 @@ background-size: cover
 .pull-left[
 ## Decision Making in Neonatology
 
-### Improving the Value of Clinical Trials
+### What can we learn from Health Economics?
 Tim Disher, PhD, RN]
 
 ---
@@ -69,37 +90,72 @@ EVERSANA
 `r fontawesome::fa("fab fa-twitter")` @halifaxtim</a> |  <a href="https://github.com/timdisher">`r fontawesome::fa("fab fa-github")` @timdisher</a>
 
 ---
+# About EVERSANA
+.large[
+- Primarily consult for pharmaceutical and medical device companies
+ - Some ad-hoc work with academia/health technology assessment agencies
+- Health Economics and Outcomes Research (HEOR) group responsible for
+ - Development of global health economic models
+ - Adaptation of models for local decision makers
+ - Trial/Claims/EHR analysis to support reimbursement]
+ 
+---
+layout: true
+class: split-four
 
-# What is the thesis of this presentation?
-- Decisions are local
-  - Rates, preferences, methods comfort
-  - Trials are not flexible and totally open data is far away
-  - Can we approximate open data with simple models?
-  
-Upon completion of this activity, participants will be able to:
+.row.bg1[.content.center[
+#.white[Decisions are Local]
+####.white[Background event rates, practices, and availability of resources]
+]]
+
+.row.bg2[.content.center[
+#.white[Decisions are Personal]
+####.white[Within a location the right decision depends on patient preferences]
+]]
+
+.row.bg3[.content.center[
+#.white[Decision-making benefits from bespoke methods]
+####.white[Many to choose from - MCDA and Ordinal models today]
+]]
+
+.row.bg4[.content.center[
+#.white[Decision-making benefits from open data]
+####.white[But truly open data is far away so we need a temporary solution]
+]]
+
+---
+class: fade-row2 fade-row3 fade-row4
+---
+class: fade-row1 fade-row3 fade-row4
+---
+class: fade-row1 fade-row2 fade-row4
+---
+class: fade-row1 fade-row2 fade-row3
+---
+layout: false
+
+# Objectives 
+.large[.center[### Upon completion of this activity, participants will be able to]
 
 1.	Describe the purpose of decision theoretic approaches
 2.	Give examples of ways in which neonatal studies could include components of decision theory
 3.	Identify potential roadblocks to generalization of the results of neonatal trials for decision making
 4.	Develop analysis plans that allow for flexible adaptations of results to new locations
+]
 
-- Latest thought on overall flow is:
-  - I will teach you a simple way to get closer to decision theory (consenance curves)
-  - A simple decision theory approach to prognostic models (decision curves)
-  - A simple decision theory approach to RCTs (MCDA)
+---
+# Presentation Flow
+
+### Approaches you can use based on published data
+  - Neyman-Pearson hypothesis testing as a decision theoretic approach (you can change $\alpha$ and $\beta$)
+  - Using MCDA to make decisions based on commonly reported summaries
+
+### Approaches that need individual participant data (real or **synthethic**)
+  - A simple decision theory approach to RCTs (Ordinal models)
   - A package to make this portable
 
 ---
-class: middle, center
-
-## What I Hope to Convince you of
-
-> Every neonatal trial that is designed to influence practice decisions should
-provide raw data, user-friendly code, and simple decision tools based on
-multivariate outcomes
-
-**I will offer whatever support I can to help anyone working towards these goals** 
-
+<iframe src="https://wall.sli.do/event/eqmqpzmh?section=927ba679-43c6-40b2-9024-282a10569e8d" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
 ---
 ## What I Love about Neonatal Research
 
@@ -118,127 +174,329 @@ multivariate outcomes
 .pull-right[
 ![](https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Cochrane_logo_stacked.svg/1200px-Cochrane_logo_stacked.svg.png)]
 
+.footnote[`r Citet(bib, "mitra2021optimizing")`]
 ---
 ## What I Would Like to See More of
 
-### Open Data
+.pull-left[### Open Data
 
 - Research will be more flexible and more portable if it's more open
   - Most common example is prediction tools
 - What is preventing us from sharing the data itself?
   - Privacy rules (may not be the barrier we think it is)
   - Ownership/competition
-
-### Decision Theory
+]
+.pull-right[### Decision Theory
 
 - A set of methods/approach to analysis and interpretation of data that maximizes
 "goodness"
   - Health economics, MCDA, win-ratio, and others
 - We are already using pseudo decision theory by basing decisions off of statistical significance
-  - $\alpha$ = 0.05 and $\beta$ = 0.8 suggests false positives four times worse than false negatives
   - Can we do better?
-
+]
+.footnote[`r Citet(bib, c("drummond2015methods", "lakens2018justify"))`]
 ---
-## Barriers to Use of Decision Theory in Neonatal Research
 
+## We Usually Can't Rely on Guidelines to Make Decisions for Us
+
+.pull-left[ 
+ ### Local Variability
+- Variation in patient populations
+- Variation in practices
+- Variation in patient outcomes
+
+]
+
+.pull-right[
 ### Preferences are Personal
-
 - All the methods we might be interested in require us to weight outcomes in
 some way
   - Win-ratio and ordinal models: Ordinal ranking
   - MCDA: Ordinal or swing weighting
   - Cost-effectiveness/utility: Willingness to pay and valuing health states
   - Decision curves: Thresholds for treatment
+ ]
+---
+class: inverse, middle, center
 
-### Plurality of Methods
-  - Lack of shared experience means lack of confidence in planning outcomes/analyses
-    - What will be convincing? What will generalize best?
+# Simple Tools | Synthetic Data | Standard Code
 
-### Misperceptions
- - I can't include a decision theory framework because I don't agree with the principals
- of method x
+---
+# Example Data
+
+- The following sections of this presentation will use some fake data to walk through
+potential approaches.
+
+- Results were simulated for a hypothetical two-arm parallel randomized controlled
+trial of very pre-term infants (N = 1350).
+
+- Outcomes include:
+  1. Mortality
+  2. Sepsis (any)
+  3. Severe IVH 
+  4. NEC
+  5. Bronchopulmonary Dysplasia
+
+- Baseline rates were simulated using available Canadian event rates where possible
+with a treatment that improves mortality, severe IVH, and sepsis but increases the
+risk of bronchopulmonary dysplasia and NEC.
+
+---
+# Example Data | Results
+
+
+```{r echo = FALSE, results = "asis"}
+mcda_marg <- dat$marg_mcda
+means <- mcda_marg$dat %>% colMeans
+marg_pdat <- map(1:5, ~{ 
+  dat <-  1- mcda_marg$dat[,,.]
+  name <- dimnames(mcda_marg$dat)[[3]][[.]]
+ means <- colMeans(dat) %>% t() %>% as.data.frame() %>%
+   mutate(est = "mean", out = name)
+  
+ apply(dat, 2, quantile, probs = c(0.025, 0.975)) %>% 
+   as.data.frame() %>%
+   tibble::rownames_to_column("est") %>%
+   mutate(out = name) %>%
+   add_row(means) %>%
+   tidyr::gather(key, val, - c(est, out)) %>%
+   tidyr::unite(out_arm, out, key, sep = "-") %>%
+   mutate(est = case_when(est == "2.5%" ~ "lwr",
+                          est == "mean" ~ "mean",
+                          TRUE ~ "upr")) %>%
+   tidyr::spread(est, val)
+   
+   
+  
+  }) %>% do.call(rbind,.) %>%
+  tidyr::separate("out_arm", c("out", "arm"), sep = "-") %>%
+  mutate(label = as.character(round(mean, 2)),
+         out = factor(out, levels = c("mort","sev_ivh","nec","cld","sepsis"),
+                      labels = c("Mortality", "Severe IVH", "NEC", "BPD", "Sepsis")))
+
+p <- marg_pdat %>% ggplot(aes(x = out, y = mean, fill = arm, label = label)) +
+  geom_col(position = "dodge") +
+  geom_text(aes(label = label), position=position_dodge(width=0.9), vjust=-0.25, size = 3) +
+    scale_fill_manual(name = "Intervention", values = cols[1:2], labels = c("Control", "Treatment")) +
+    labs(y = "Probability", x = "") +
+  slide_theme +
+  coord_cartesian(ylim = c(0, 0.5))
+
+
+
+```
+
+
+```{r echo = FALSE}
+p
+```
+
+---
+# Simple Tools | Can we change $\alpha$ and $\beta$?
+
+- Trials designed under a Neyman-Pearson decision framework provide a framework
+for action based on the results of a significance test. Most commonly we are testing
+that a treatment effect is different than zero. We design the trial to:
+ - Have 1 - $\beta$ (power) probability of detecting an effect
+ - No more than $\alpha$ of claiming an effect exists when the true difference is zero.
  
+- These are typically set at $\beta$ = 0.8 and $\alpha$ = 0.05 which suggests that
+is it `r 0.20/0.05` times worse to claim an effect exists when it doesn't.
+
+>This .80 desired power convention is offered with the hope that it will be ignored whenever an investigator can find a basis in his substantive concerns in his specific research investigation to choose a value ad hoc  
+ - Cohen (1998)
+
+
 ---
-class: inverse, middle, center
+# Simple Tools | Changing $\alpha$ and $\beta$
+```{r include = FALSE}
+cld_sum <- dat$marginal_glms$cld %>% summary()
 
-# Simulated Data | Shared Code | Simple Tools
+round(cld_sum$coefficients[2,4], 3)
+```
+- Imagine that our simulated trial was powered to find a decrease in sepsis. Maybe
+locally we are also concerned that the mechanism of action of the treatment is such
+that we're concerned about an increase in BPD.
+  - At our center we have very good outcomes for neonates with sepsis but have
+  found BPD is associated with poor developmental outcomes 
+
+- We decide that we won't evaluate a treatment further if there is treatment
+increases BPD by more than 8.5%. Based on an expected baseline event rate of 36% in
+this population this would equate to an odds ratio of `r round(exp(qlogis(0.445)) / exp(qlogis(0.36)),2)`.
+
+- Instead of a 4:1 ratio of the importance of false negative/positives we are
+willing to risk 2:1. Since we can't change the n we can just find the threshold
+for $\alpha$ where the ratio is 2:1.
+  - This is 0.08 which when compared to trial analysis p-value of `r round(cld_sum$coefficients[2,4], 3)` would lead us to "act as if"
+  there were harm and not implement the intervention.
+
+
+
+---
+# Simple Tools | MCDA Overview
+
+- Trials typically provide us with estimates of effects on multiple outcomes that
+are relevant for decision making.
+
+- The benefit portion of a decision theoretic model should bring all relevant
+outcomes onto a weighted scale that helps us to decide whether one treatment
+is better than the other over all
+  - In health economic models this is often health utilities
+
+- If preferences are linear and additive
+  - Weights can be explicitly elicited, ranked ordinaly, or we can use random
+  samples from all feasible weights.
+  - Calculate the probability that a treatment is "best" given estimates of event
+  rates and their uncertainty alongside weights (with or without uncertainty)
+  - Can also calculate the vector of weights needed to prefer one treatment over
+  another. This can be a nice tool to logic check your implied preferences.
+
+.footnote[`r Citet(bib, "tervonen2015applying")`]
 
 ---
 
-# Simulated Data
+# Simple Tools | MCDA applied
 
-> Your trial can't and doesn't have to provide a universal recommendation that
-is valid under all preferences in all centers
+When using a "preference free" model treatment has the highest first rank acceptability.
+Central weights show that choosing treatment suggests lower weight placed on
+BPD and NEC. Also shows that we can confidently choose BPD but requires us to care
+more about BPD than any other outcome
+ - Consider how decisions would change as baseline events change
 
-- Implementing decision theoretic methods does not have to require we re-think
-our entire approach to trials
-  - You may not be able to capture costing data
-  - You may not have resources for the most rigorous preference elicitation
+```{r echo = FALSE, results = "asis"}
+
+names <- dimnames(mcda_marg$dat)[[3]]
+cbind(mcda_marg$mcda$ra[,1],mcda_marg$mcda$cf$cf, mcda_marg$mcda$cf$cw) %>%
+  as.data.frame %>%
+  purrr::set_names(c("ra", "cf", names)) %>%
+  tibble::rownames_to_column("arm") %>%
+  mutate_if(is.numeric, round, 2) %>%
+  mutate(arm = case_when(arm == "ctrl" ~ "Control",
+                         TRUE ~ "Treatment")) %>%
+  gt::gt() %>%
+  cols_label(
+    arm = "Arm",
+    ra = "First Rank Acceptability",
+    cf = "Confidence Factor",
+    mort = "Mortality",
+    sev_ivh = "Severe IVH",
+    sepsis = "Sepsis",
+    cld = "BPD",
+    nec = "NEC"
+  ) %>%
+  tab_header("MCDA Summaries") %>%
+  tab_spanner(label = "Central Weights",
+              columns = c("mort","sev_ivh","sepsis","cld","nec"))
+
+```
+
+
+---
+
+# Synthetic Data
+
+- If our decisions need to be based on combinations of events or our preferences
+are not linearly additive then we need actual individual participant data
+  - We usually will not have access or access could take months and/or be 
+  prohibitively expensive
+
+- Solution: Synthetic data
+
+- Synthetic data that will generate approximately the same results can be generated from the original
+  - Re-identification risk? See [this report](http://hummedia.manchester.ac.uk/institutes/cmist/archive-publications/reports/2015-02%20-Report%20on%20disclosure%20risk%20analysis%20of%20synthpop%20synthetic%20versions%20of%20LCF_%20final.pdf)
+  - Alternative: Use the same software but only share the actual models. Simulate
+  new datasets using local patient characteristics
+
+.footnote[`r Citet(bib, "nowok2016synthpop")`]
+---
+# Synthetic Data | Applied Example
+
+Using our example data we create a new synthetic dataset based on fitting binomial
+models first to mortality given treatemnt then IVH given mortality and treatment, etc..
+
+```{r echo = FALSE}
+data("ex_dat")
+ex_dat <- as.data.frame(ex_dat) %>% dplyr::select(trt, mort, sev_ivh, sepsis, cld, nec)
+
+comp_p <- synthpop::compare(dat$synth_dat, data = as.data.frame(ex_dat))
+
+comp_p$plots[[1]] +
+  slide_theme
+```
+
+---
+# Synthetic Data | Ordinal Analysis
+
+- If we order our outcomes from best (uncomplicated discharge) to worst (death)
+we can create an ordinal outcome that acts as a quasi utility based on worst
+outcome.
+  - No events > Sepsis > NEC > CLD > IVH > Death
+  - For simplicity we just compare to a single synthetic dataset. In real applications
+  you may simulate multiple datasets and take estimates averaged over them all.
   
-.center.large[**We can take a small step towards incorporating decision theory in any 
-trial and then lay the groundwork for others to adapt**]
+```{r echo = FALSE, fig.height= 3}
+ord_models <- dat$ord_models
+ord_plots <- map(c("orig", "synth"), ~ {
+  se <- sqrt(vcov(ord_models[[.]])[2,2])
+tibble(te = ord_models[[.]]$coefficients[6],
+       upr = te + 1.96*se,
+       lwr = te - 1.96*se,
+       model = factor(., levels = c("orig", "synth"), labels = c("Original", "Synthetic"))) %>%
+  mutate_if(is.numeric, exp)
+ 
+}) %>% do.call(rbind, .)
 
-- Synthetic data using machine learning based tools like the `synthpop` package
-  - Risk of re-identification may be too high for public sharing
 
-- Standard, well-researched analysis methods
-  - Multivariate probit for binomial outcomes. Can be used for the primary analysis (and opens new doors as well)
+ggplot(ord_plots, aes(x = model, y = te, ymin = lwr, ymax = upr)) +
+  geom_pointrange(size = 1.5) +
+  coord_flip() +
+  geom_hline(yintercept = 1) +
+  labs(y = "Odds Ratio",
+       x = "Dataset") +
+  slide_theme
 
----
+```
 
-# Shared Code
 
-- Open-source revolution has been a boon for analysis methods, computer science,
-and science communication.
-
-- Tools for open code are easy to use and often within the toolbox of methodological
-colleagues
-
-- We can provide a tremendous benefit to trainees by showing them the process of
-high-quality analysis
- - Many errors can be avoided and problems anticipated by seeing an example
- of analyses run on a similar dataset
- - When combined with simulated data, provides a powerful tool to help standardization
- of approach
-  
-  <br>
->Sharing your code can be scary but don't underestimate the upsides: You
-can teach and learn just by engaging in the process. It also unlocks something
-amazing: people will help you to improve your work.
 
 ---
-# Simple Tools
 
-In knowledge translation we often talk about the two "valleys of death" where
-basic science discoveries fail to move into clinical research and clinical research
-discoveries are delayed in entering practice.
+# Standard Code | Next Steps
 
-- We can think of a third valley being that once we convince a clinician an intervention
-can be helpful they then have to communicate this to patients
-
-### Analyses based on decision theory methods need simple tools to help apply them
-
-These can be as simple as Excel calculators (used with success for risk prediction tools)
-or as complex as interactive web-apps but the whole purpose of decision tools is
-to aid decision makers who might have preferences that are very different from yours
-so you need to provide them the support to explore the implications of those preferences
+- {neoDecision} is an in development R package to provide a simple interface to methods described
+today (and more later). It is a wrapper for multiple existing packages.
+- Goals (more or less in order)
+  - Simple interface to relevant formulations of MCDAs (via {smaa} and {hitandrun})
+  - Creation of synthetic data (via {synthpop}) with the option to share actual
+  datasets or models used to create them
+  - API to an open database of neonatal data (true IPD, synthetic data, models for synthetic data, results from a set of standard models)
+  - Point and click interfaces to create data, add to database, and create relevant models
 
 ---
-class: inverse, middle, center
+# Summary
 
-# A Simulated Example
+- Decisions are local and personal and the same data can (and should!) lead to 
+different decisions in different environments
+
+- We made several different decisions from our simulated trial
+  - Original analysis suggests effective for sepsis
+  - Changing value of false positives/false negatives leads to rejection based on increase in BPD
+  - MCDA suggests treatment is effective across all outcomes unless you value BPD
+  much higher than mortality
+  - Ordinal analysis point estimate suggests treatment may decrease utility (increases
+  scores)
+
+- We can start using basic methods today with an eye to making more flexible methods
+available through synthetic data
+---
+<iframe src="https://wall.sli.do/event/eqmqpzmh?section=927ba679-43c6-40b2-9024-282a10569e8d" style="position:fixed; top:0; left:0; bottom:0; right:0; width:100%; height:100%; border:none; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>
+---
+class: inverse, center, middle
+# Questions?
 
 ---
-# Methods
-- Simulate a simple RCT of a treatment
-- Three outcomes total: Mortality, BPD, NEC
-- Treatment decreases risk of BPD but increases risk of NEC/Death
----
-# Evaluation
-MCDA three ways
- - Additive high/low risk
- - Remove deaths from NEC probability high/low risk
- - P(meaningful BPD & non meaningful death or harm)
----
-# Next Steps 
-- {neoDecision}
+# References
+```{r results = "asis", echo = FALSE}
+PrintBibliography(bib)
+```
+

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 All analyses | Data preparation for Harvard Talk</title>
+  <meta name="description" content="3 All analyses | Data preparation for Harvard Talk" />
+  <meta name="generator" content="bookdown 0.22.2 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 All analyses | Data preparation for Harvard Talk" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 All analyses | Data preparation for Harvard Talk" />
+  
+  
+  
+
+<meta name="author" content="Tim Disher" />
+
+
+<meta name="date" content="2021-05-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="generate-pseudo-data.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Project Information</a></li>
+<li class="chapter" data-level="2" data-path="generate-pseudo-data.html"><a href="generate-pseudo-data.html"><i class="fa fa-check"></i><b>2</b> Generate Pseudo Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="generate-pseudo-data.html"><a href="generate-pseudo-data.html#generate-data-from-synthpop"><i class="fa fa-check"></i><b>2.1</b> Generate data from synthpop</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="all-analyses.html"><a href="all-analyses.html"><i class="fa fa-check"></i><b>3</b> All analyses</a><ul>
+<li class="chapter" data-level="3.1" data-path="all-analyses.html"><a href="all-analyses.html#things-we-can-do-without-access-to-ipd"><i class="fa fa-check"></i><b>3.1</b> Things we can do without access to IPD</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="all-analyses.html"><a href="all-analyses.html#adjusting-p-value-for-decision-at-hand"><i class="fa fa-check"></i><b>3.1.1</b> Adjusting p-value for decision at hand</a></li>
+<li class="chapter" data-level="3.1.2" data-path="all-analyses.html"><a href="all-analyses.html#mcda-from-marginals"><i class="fa fa-check"></i><b>3.1.2</b> MCDA from marginals</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="all-analyses.html"><a href="all-analyses.html#approaches-that-we-need-ipd-for"><i class="fa fa-check"></i><b>3.2</b> Approaches that we need IPD for</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="all-analyses.html"><a href="all-analyses.html#ordinal-model"><i class="fa fa-check"></i><b>3.2.1</b> Ordinal model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="all-analyses.html"><a href="all-analyses.html#mcda-with-conditional"><i class="fa fa-check"></i><b>3.2.2</b> MCDA with conditional</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data preparation for Harvard Talk</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="all-analyses" class="section level1">
+<h1><span class="header-section-number">3</span> All analyses</h1>
+<div id="things-we-can-do-without-access-to-ipd" class="section level2">
+<h2><span class="header-section-number">3.1</span> Things we can do without access to IPD</h2>
+<div id="adjusting-p-value-for-decision-at-hand" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Adjusting p-value for decision at hand</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="all-analyses.html#cb12-1"></a>glms &lt;-<span class="st"> </span><span class="kw">cache_rds</span>({<span class="kw">lst</span>(</span>
+<span id="cb12-2"><a href="all-analyses.html#cb12-2"></a>  <span class="dt">cld =</span> <span class="kw">glm</span>(cld <span class="op">~</span><span class="st"> </span>trt, <span class="dt">family =</span> binomial, <span class="dt">data =</span> dat),</span>
+<span id="cb12-3"><a href="all-analyses.html#cb12-3"></a>  <span class="dt">mort =</span> <span class="kw">glm</span>(mort <span class="op">~</span><span class="st"> </span>trt, <span class="dt">family =</span> binomial, <span class="dt">data =</span> dat)</span>
+<span id="cb12-4"><a href="all-analyses.html#cb12-4"></a>)}, <span class="dt">dir =</span> cache, <span class="dt">file =</span> <span class="st">&quot;marginal_glms&quot;</span>) </span>
+<span id="cb12-5"><a href="all-analyses.html#cb12-5"></a></span>
+<span id="cb12-6"><a href="all-analyses.html#cb12-6"></a><span class="kw">map</span>(glms, summary)</span></code></pre></div>
+<pre><code>## $cld
+## 
+## Call:
+## glm(formula = cld ~ trt, family = binomial, data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.0474  -1.0474  -0.9643   1.3132   1.4066  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -0.52428    0.07964  -6.583 4.61e-11 ***
+## trt          0.21062    0.11142   1.890   0.0587 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1813.8  on 1349  degrees of freedom
+## Residual deviance: 1810.3  on 1348  degrees of freedom
+## AIC: 1814.3
+## 
+## Number of Fisher Scoring iterations: 4
+## 
+## 
+## $mort
+## 
+## Call:
+## glm(formula = mort ~ trt, family = binomial, data = dat)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.5994  -0.5994  -0.5445  -0.5445   1.9910  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  -1.6255     0.1038 -15.655   &lt;2e-16 ***
+## trt          -0.2083     0.1525  -1.366    0.172    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1146.5  on 1349  degrees of freedom
+## Residual deviance: 1144.6  on 1348  degrees of freedom
+## AIC: 1148.6
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="all-analyses.html#cb14-1"></a>conf_vector &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">0.95</span>, <span class="dt">to =</span> <span class="fl">0.7</span>, <span class="dt">length.out =</span> <span class="dv">10</span>)</span>
+<span id="cb14-2"><a href="all-analyses.html#cb14-2"></a></span>
+<span id="cb14-3"><a href="all-analyses.html#cb14-3"></a>power &lt;-<span class="st"> </span><span class="ot">FALSE</span></span>
+<span id="cb14-4"><a href="all-analyses.html#cb14-4"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb14-5"><a href="all-analyses.html#cb14-5"></a><span class="cf">while</span>(power <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>){</span>
+<span id="cb14-6"><a href="all-analyses.html#cb14-6"></a></span>
+<span id="cb14-7"><a href="all-analyses.html#cb14-7"></a>  pwr &lt;-<span class="st"> </span>epiR<span class="op">::</span><span class="kw">epi.sscc</span>(<span class="dt">OR =</span> <span class="fl">0.7</span>, <span class="co"># Coincides to risk difference of 8% based on 36% baseline risk</span></span>
+<span id="cb14-8"><a href="all-analyses.html#cb14-8"></a>               <span class="dt">p0 =</span> <span class="fl">0.36</span>,</span>
+<span id="cb14-9"><a href="all-analyses.html#cb14-9"></a>               <span class="dt">n =</span> <span class="dv">1350</span>,</span>
+<span id="cb14-10"><a href="all-analyses.html#cb14-10"></a>               <span class="dt">conf.level =</span> conf_vector[[i]],</span>
+<span id="cb14-11"><a href="all-analyses.html#cb14-11"></a>               <span class="dt">power =</span> <span class="ot">NA</span>)</span>
+<span id="cb14-12"><a href="all-analyses.html#cb14-12"></a>  </span>
+<span id="cb14-13"><a href="all-analyses.html#cb14-13"></a>  power =<span class="st"> </span>pwr<span class="op">$</span>power <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.9</span></span>
+<span id="cb14-14"><a href="all-analyses.html#cb14-14"></a>  i =<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb14-15"><a href="all-analyses.html#cb14-15"></a>}</span>
+<span id="cb14-16"><a href="all-analyses.html#cb14-16"></a></span>
+<span id="cb14-17"><a href="all-analyses.html#cb14-17"></a>new_alpha &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>conf_vector[[i]]</span></code></pre></div>
+<p>Before we get into more direct decision theory approaches, one simple way we can
+make decisions a little more local is just by re-evaluating our values of alpha
+and beta. Let’s use CLD as a rough proxy for risk of disability and say that
+maybe locally we are willing to risk more false positives in order to decrease
+our possibility of missing a true effect. Instead of the default assumption that
+a false positive is four times worse than a false negative let’s say in this
+case we decide that the potential harm from this intervention is such that we’re
+willing to risk a two to one trade off. If we fix the sample size and assume we
+woudn’t want to miss a risk difference of 8% (OR of 0.7) then this would equate
+to a p-value of 0.11.</p>
+<p>This equates to a decision rule that “If I can be confident in the direction of
+the effect” using alpha/beta to weigh risks of false negative/positive then you
+act “as if” there is/is not a difference.</p>
+</div>
+<div id="mcda-from-marginals" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> MCDA from marginals</h3>
+<p>In the first step we will need marginal probabilities with uncertainty from each
+outcome we’d like to include in the mcda. An easy way to do this is just to run
+a glm and then sample predicted probabilities from the variance covariance matrix.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="all-analyses.html#cb15-1"></a>outs &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw">set_names</span>(<span class="kw">c</span>(<span class="st">&quot;mort&quot;</span>, <span class="st">&quot;sev_ivh&quot;</span>, <span class="st">&quot;sepsis&quot;</span>, <span class="st">&quot;cld&quot;</span>, <span class="st">&quot;nec&quot;</span>))</span>
+<span id="cb15-2"><a href="all-analyses.html#cb15-2"></a></span>
+<span id="cb15-3"><a href="all-analyses.html#cb15-3"></a>mcda_marg_dat &lt;-<span class="st"> </span><span class="kw">mcda_prep</span>(outs, <span class="dt">data =</span> pres_dat)</span>
+<span id="cb15-4"><a href="all-analyses.html#cb15-4"></a></span>
+<span id="cb15-5"><a href="all-analyses.html#cb15-5"></a></span>
+<span id="cb15-6"><a href="all-analyses.html#cb15-6"></a>mcda_marg &lt;-<span class="st"> </span><span class="kw">cache_rds</span>({</span>
+<span id="cb15-7"><a href="all-analyses.html#cb15-7"></a>  </span>
+<span id="cb15-8"><a href="all-analyses.html#cb15-8"></a>  <span class="kw">lst</span>(<span class="dt">dat =</span> mcda_marg_dat,</span>
+<span id="cb15-9"><a href="all-analyses.html#cb15-9"></a>      <span class="dt">mcda =</span>  <span class="kw">do_mcda</span>(<span class="dv">5</span>, mcda_marg_dat))</span>
+<span id="cb15-10"><a href="all-analyses.html#cb15-10"></a>  </span>
+<span id="cb15-11"><a href="all-analyses.html#cb15-11"></a> },</span>
+<span id="cb15-12"><a href="all-analyses.html#cb15-12"></a>                       <span class="dt">dir =</span> cache, <span class="dt">file =</span> <span class="st">&quot;marg_mcda&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="approaches-that-we-need-ipd-for" class="section level2">
+<h2><span class="header-section-number">3.2</span> Approaches that we need IPD for</h2>
+<div id="ordinal-model" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Ordinal model</h3>
+<p>An alternative approach might be to arrange outcomes from best to worse and then
+use an ordinal model to run the analysis interpreting the treatment effect as
+a kind of improvement in quasi utility.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="all-analyses.html#cb16-1"></a>ord &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;sepsis&quot;</span>, <span class="st">&quot;nec&quot;</span>, <span class="st">&quot;cld&quot;</span>, <span class="st">&quot;sev_ivh&quot;</span>, <span class="st">&quot;mort&quot;</span>)</span>
+<span id="cb16-2"><a href="all-analyses.html#cb16-2"></a></span>
+<span id="cb16-3"><a href="all-analyses.html#cb16-3"></a></span>
+<span id="cb16-4"><a href="all-analyses.html#cb16-4"></a></span>
+<span id="cb16-5"><a href="all-analyses.html#cb16-5"></a>dat_ord_orig &lt;-<span class="st"> </span><span class="kw">make_ord</span>(<span class="dt">data =</span> pres_dat, <span class="dt">name =</span> <span class="st">&quot;ord1&quot;</span>, <span class="dt">order =</span> ord)</span>
+<span id="cb16-6"><a href="all-analyses.html#cb16-6"></a></span>
+<span id="cb16-7"><a href="all-analyses.html#cb16-7"></a>dat_ord_synth &lt;-<span class="st"> </span><span class="kw">make_ord</span>(<span class="dt">data =</span> pres_dat_syn, <span class="dt">name =</span> <span class="st">&quot;ord1&quot;</span>, <span class="dt">order =</span> ord)</span>
+<span id="cb16-8"><a href="all-analyses.html#cb16-8"></a></span>
+<span id="cb16-9"><a href="all-analyses.html#cb16-9"></a></span>
+<span id="cb16-10"><a href="all-analyses.html#cb16-10"></a>ord_models &lt;-<span class="st"> </span><span class="kw">cache_rds</span>({</span>
+<span id="cb16-11"><a href="all-analyses.html#cb16-11"></a>  <span class="kw">lst</span>(</span>
+<span id="cb16-12"><a href="all-analyses.html#cb16-12"></a>  <span class="dt">orig =</span> rms<span class="op">::</span><span class="kw">orm</span>(ord1 <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> dat_ord_orig),</span>
+<span id="cb16-13"><a href="all-analyses.html#cb16-13"></a>  <span class="dt">synth =</span> rms<span class="op">::</span><span class="kw">orm</span>(ord1 <span class="op">~</span><span class="st"> </span>trt, <span class="dt">data =</span> dat_ord_synth)</span>
+<span id="cb16-14"><a href="all-analyses.html#cb16-14"></a>)</span>
+<span id="cb16-15"><a href="all-analyses.html#cb16-15"></a>}, <span class="dt">dir =</span> cache, <span class="dt">file =</span> <span class="st">&quot;ord_models&quot;</span>) </span>
+<span id="cb16-16"><a href="all-analyses.html#cb16-16"></a></span>
+<span id="cb16-17"><a href="all-analyses.html#cb16-17"></a></span>
+<span id="cb16-18"><a href="all-analyses.html#cb16-18"></a>ord_models</span></code></pre></div>
+<pre><code>## $orig
+## Logistic (Proportional Odds) Ordinal Regression Model
+##  
+##  rms::orm(formula = ord1 ~ trt, data = dat_ord_orig)
+##  
+##  
+##  Frequencies of Responses
+##  
+##  no_event   sepsis      nec      cld  sev_ivh     mort 
+##       510      293       44      372       47       84 
+##  
+##                       Model Likelihood          Discrimination          Rank Discrim.    
+##                          Ratio Test                 Indexes                Indexes       
+##  Obs          1350    LR chi2      0.42    R2                  0.000    rho     0.018    
+##  Distinct Y      6    d.f.            1    g                   0.032                     
+##  Median Y        2    Pr(&gt; chi2) 0.5162    gr                  1.033                     
+##  max |deriv| 2e-06    Score chi2   0.42    |Pr(Y&gt;=median)-0.5| 0.123                     
+##                       Pr(&gt; chi2) 0.5162                                                  
+##  
+##             Coef    S.E.   Wald Z Pr(&gt;|Z|)
+##  y&gt;=sepsis   0.4685 0.0732   6.40 &lt;0.0001 
+##  y&gt;=nec     -0.4150 0.0733  -5.66 &lt;0.0001 
+##  y&gt;=cld     -0.5525 0.0743  -7.44 &lt;0.0001 
+##  y&gt;=sev_ivh -2.2633 0.1050 -21.55 &lt;0.0001 
+##  y&gt;=mort    -2.7455 0.1235 -22.22 &lt;0.0001 
+##  trt         0.0641 0.0987   0.65 0.5163  
+##  
+## 
+## $synth
+## Logistic (Proportional Odds) Ordinal Regression Model
+##  
+##  rms::orm(formula = ord1 ~ trt, data = dat_ord_synth)
+##  
+##  
+##  Frequencies of Responses
+##  
+##  no_event   sepsis      nec      cld  sev_ivh     mort 
+##       508      288       51      359       47       97 
+##  
+##                       Model Likelihood          Discrimination          Rank Discrim.    
+##                          Ratio Test                 Indexes                Indexes       
+##  Obs          1350    LR chi2      0.69    R2                  0.001    rho     0.023    
+##  Distinct Y      6    d.f.            1    g                   0.041                     
+##  Median Y        2    Pr(&gt; chi2) 0.4053    gr                  1.042                     
+##  max |deriv| 4e-06    Score chi2   0.69    |Pr(Y&gt;=median)-0.5| 0.124                     
+##                       Pr(&gt; chi2) 0.4053                                                  
+##  
+##             Coef    S.E.   Wald Z Pr(&gt;|Z|)
+##  y&gt;=sepsis   0.4645 0.0746   6.23 &lt;0.0001 
+##  y&gt;=nec     -0.4041 0.0747  -5.41 &lt;0.0001 
+##  y&gt;=cld     -0.5632 0.0757  -7.44 &lt;0.0001 
+##  y&gt;=sev_ivh -2.1686 0.1026 -21.14 &lt;0.0001 
+##  y&gt;=mort    -2.6018 0.1177 -22.11 &lt;0.0001 
+##  trt         0.0820 0.0985   0.83 0.4053  
+## </code></pre>
+</div>
+<div id="mcda-with-conditional" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> MCDA with conditional</h3>
+<p>A drawback of the ordinal model is that it doesn’t let us specify how much worse
+one outcome is than another. We can extend the marginal MCDA to account for
+combinations of outcomes being worse by leveraging our synthetic dataset. This
+could be extended further by having non-linear partial utilities or other
+considerations.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="all-analyses.html#cb18-1"></a>outs_prep &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;mort&quot;</span>, <span class="st">&quot;sepsis&quot;</span>, <span class="st">&quot;nec&quot;</span>, <span class="st">&quot;cld_ivh&quot;</span>)</span>
+<span id="cb18-2"><a href="all-analyses.html#cb18-2"></a></span>
+<span id="cb18-3"><a href="all-analyses.html#cb18-3"></a>mcda_comb_list &lt;-<span class="st"> </span><span class="kw">cache_rds</span>({</span>
+<span id="cb18-4"><a href="all-analyses.html#cb18-4"></a></span>
+<span id="cb18-5"><a href="all-analyses.html#cb18-5"></a>  <span class="kw">set.seed</span>(<span class="dv">124</span>)</span>
+<span id="cb18-6"><a href="all-analyses.html#cb18-6"></a>  mcda_comb_orig_dat &lt;-<span class="st"> </span><span class="kw">mcda_prep</span>(outs_prep, <span class="dt">data =</span> pres_dat)</span>
+<span id="cb18-7"><a href="all-analyses.html#cb18-7"></a>  </span>
+<span id="cb18-8"><a href="all-analyses.html#cb18-8"></a>  mcda_comb_orig &lt;-<span class="st"> </span><span class="kw">do_mcda</span>(<span class="dv">4</span>, mcda_comb_orig_dat)</span>
+<span id="cb18-9"><a href="all-analyses.html#cb18-9"></a>  </span>
+<span id="cb18-10"><a href="all-analyses.html#cb18-10"></a>  <span class="kw">set.seed</span>(<span class="dv">124</span>)</span>
+<span id="cb18-11"><a href="all-analyses.html#cb18-11"></a>  </span>
+<span id="cb18-12"><a href="all-analyses.html#cb18-12"></a>  mcda_comb_syn_dat &lt;-<span class="st"> </span><span class="kw">mcda_prep</span>(outs_prep, <span class="dt">data =</span> pres_dat_syn)</span>
+<span id="cb18-13"><a href="all-analyses.html#cb18-13"></a>  mcda_comb_syn &lt;-<span class="st"> </span><span class="kw">do_mcda</span>(<span class="dv">4</span>, mcda_comb_syn_dat)</span>
+<span id="cb18-14"><a href="all-analyses.html#cb18-14"></a></span>
+<span id="cb18-15"><a href="all-analyses.html#cb18-15"></a>  <span class="kw">lst</span>(<span class="dt">orig_dat =</span>  mcda_comb_orig_dat,</span>
+<span id="cb18-16"><a href="all-analyses.html#cb18-16"></a>      <span class="dt">orig_mcda =</span>  mcda_comb_orig,</span>
+<span id="cb18-17"><a href="all-analyses.html#cb18-17"></a>      <span class="dt">comb_dat =</span> mcda_comb_syn_dat,</span>
+<span id="cb18-18"><a href="all-analyses.html#cb18-18"></a>      <span class="dt">comb_mcda =</span> mcda_comb_syn)</span>
+<span id="cb18-19"><a href="all-analyses.html#cb18-19"></a>}, <span class="dt">dir =</span> cache, <span class="dt">file =</span> <span class="st">&quot;comb_mcdas&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="generate-pseudo-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
