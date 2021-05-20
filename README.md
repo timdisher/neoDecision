@@ -3,11 +3,10 @@
 
 **This Repository is a Work in Progress**
 
-This repository holds relevant code and slides for a presentation on the
-use of multivariate analyses to support open data, open code, and
-flexible tools for decision modeling. I use a package structure to code
-this but it is meant mostly to just to keep things organized and not to
-be installed as a package.
+This repository holds relevant code for a package meant to improve the use
+of decision making tools in neonatology. 
 
-Slides are hosted on github pages
+Slides for a presentation on the
+use of multivariate analyses to support open data, open code, and
+flexible tools for decision modeling. 
 [here](https://timdisher.github.io/neoDecision/inst/slides/improving-neo-decisions)
